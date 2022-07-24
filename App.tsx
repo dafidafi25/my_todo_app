@@ -9,11 +9,12 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, Text } from 'react-native';
 
 const App = () => {
   return (
     <SafeAreaView>
+      <Text style={{ fontFamily: 'Poppins-Regular' }}>Ini Test Font</Text>
       <StatusBar barStyle={'light-content'} />
     </SafeAreaView>
   );
