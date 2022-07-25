@@ -7,11 +7,29 @@ const text = StyleSheet.create({
     fontFamily: family.poppinsBold,
     fontSize: size.font30,
     color: colors.primary,
+    lineHeight: 34,
   },
   subHeader: {
-    fontFamily: family.poppinsBold,
-    fontSize: size.font30,
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font16,
     color: colors.gray,
+    lineHeight: 18,
+  },
+
+  cardTitle: {
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font16,
+    color: colors.white,
+  },
+  cardReport: {
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font34,
+    color: colors.white,
+  },
+  sectionTitle: {
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font24,
+    color: colors.primary,
   },
 });
 

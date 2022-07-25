@@ -11,6 +11,7 @@ module.exports = {
           '@components': './src/components',
           '@styles': './src/styles',
           '@themes': './src/themes',
+          '@Screen': ['./src/Screen'],
         },
       },
     ],

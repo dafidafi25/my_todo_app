@@ -8,20 +8,22 @@
  * @format
  */
 
-import AccountMultiple from '@assets/icons/AccountMultiple';
-import text from '@styles/text';
 import React from 'react';
-import { SafeAreaView, StatusBar, Text } from 'react-native';
-import colors from '@themes/Colors';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import Dashboard from '@Screen/Dashboard';
+import { Text } from 'react-native-svg';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <AccountMultiple color={colors.primary} width={50} />
-      <Text style={text.header}>Selamat Datang !</Text>
+    <SafeAreaView style={styles.screen}>
+      <Dashboard />
       <StatusBar barStyle={'light-content'} />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+});
 
 export default App;

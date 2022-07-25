@@ -12,7 +12,8 @@
       "@assets/*" : ["assets/*"],
       "@components/*" : ["components/*"],
       "@styles/*" : ["styles/*"],
-      "@themes/*" : ["themes/*"]
+      "@themes/*" : ["themes/*"],
+      "@Screen/*" : ["Screen/*"]
     }
   }
 }
