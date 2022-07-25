@@ -6,6 +6,8 @@ const family = {
 };
 
 const size = {
+  font8: 8,
+  font10: 10,
   font12: 12,
   font14: 14,
   font16: 16,

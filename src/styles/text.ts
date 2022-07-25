@@ -16,7 +16,7 @@ const text = StyleSheet.create({
     lineHeight: 18,
   },
 
-  cardTitle: {
+  cardReportTitle: {
     fontFamily: family.poppinsSemiBold,
     fontSize: size.font16,
     color: colors.white,
@@ -25,6 +25,23 @@ const text = StyleSheet.create({
     fontFamily: family.poppinsSemiBold,
     fontSize: size.font34,
     color: colors.white,
+  },
+  cardTitle: {
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font16,
+    color: colors.primary,
+    lineHeight: 22,
+  },
+  cardContent: {
+    fontFamily: family.poppinsRegular,
+    fontSize: size.font10,
+    color: colors.primary,
+    lineHeight: 12,
+  },
+  cardFooter: {
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font8,
+    color: colors.gray,
   },
   sectionTitle: {
     fontFamily: family.poppinsSemiBold,

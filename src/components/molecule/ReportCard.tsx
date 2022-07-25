@@ -18,9 +18,9 @@ const ReportCard: React.FC<IReportCardProps> = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Text style={text.cardTitle}>{report}</Text>
+      <Text style={text.cardReportTitle}>{report}</Text>
       <Text style={text.cardReport}>{progressPercent}</Text>
-      <Text style={text.cardTitle}>{progressTask}</Text>
+      <Text style={text.cardReportTitle}>{progressTask}</Text>
     </View>
   );
 };
