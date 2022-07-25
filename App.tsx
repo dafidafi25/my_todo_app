@@ -11,7 +11,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import Dashboard from '@Screen/Dashboard';
-import { Text } from 'react-native-svg';
 
 const App = () => {
   return (
