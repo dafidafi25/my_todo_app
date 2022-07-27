@@ -9,20 +9,75 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import Dashboard from '@Screen/Dashboard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomePlain from '@assets/icons/HomePlain';
+import PlusCircle from '@assets/icons/PlusCircle';
+import Magnify from '@assets/icons/Magnify';
+import colors from '@themes/Colors';
+
+export type RootStackParamList = {
+  Dashboard: undefined;
+  AddScreen: undefined;
+  SearchScreen: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.screen}>
-      <Dashboard />
-      <StatusBar barStyle={'light-content'} />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarStyle: { backgroundColor: colors.primary, height: 72 },
+          tabBarActiveTintColor: colors.white,
+        }}
+      >
+        <Tab.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <View style={styles.icon}>
+                <HomePlain color={color} width={41} />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="AddScreen"
+          component={Dashboard}
+          options={{
+            tabBarIcon: () => (
+              <View style={styles.addIcon}>
+                <PlusCircle color={colors.primary} width={80} />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="SearchScreen"
+          component={Dashboard}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <View style={styles.icon}>
+                <Magnify color={color} width={43} />
+              </View>
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: { flex: 1 },
+  icon: { bottom: 8 },
+  addIcon: { bottom: 55 },
 });
 
 export default App;
