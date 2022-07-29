@@ -17,6 +17,7 @@ import HomePlain from '@assets/icons/HomePlain';
 import PlusCircle from '@assets/icons/PlusCircle';
 import Magnify from '@assets/icons/Magnify';
 import colors from '@themes/Colors';
+import SearchScreen from '@Screen/SearchScreen';
 
 export type RootStackParamList = {
   Dashboard: undefined;
@@ -61,7 +62,7 @@ const App = () => {
         />
         <Tab.Screen
           name="SearchScreen"
-          component={Dashboard}
+          component={SearchScreen}
           options={{
             tabBarIcon: ({ color }) => (
               <View style={styles.icon}>

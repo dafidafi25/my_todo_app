@@ -43,6 +43,11 @@ const text = StyleSheet.create({
     fontSize: size.font8,
     color: colors.gray,
   },
+  cardStatus: {
+    fontFamily: family.poppinsSemiBold,
+    color: colors.primary,
+    fontSize: size.font12,
+  },
   sectionTitle: {
     fontFamily: family.poppinsSemiBold,
     fontSize: size.font24,
