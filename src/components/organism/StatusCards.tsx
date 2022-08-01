@@ -25,8 +25,9 @@ const StatusCards: React.FC<IStatusCardsProps> = () => {
   }, {});
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={todosObject}
         renderItem={({ item, index }) => (
           <View key={index}>
@@ -54,6 +55,7 @@ const StatusCards: React.FC<IStatusCardsProps> = () => {
 };
 
 const styles = StyleSheet.create({
+  container: { flex: 1 },
   section: { borderBottomWidth: 1, borderBottomColor: colors.primary },
 });
 

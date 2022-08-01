@@ -22,7 +22,11 @@ const Dashboard: React.FC<IDashboardProps> = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.backGround },
+  container: {
+    flex: 1,
+    backgroundColor: colors.backGround,
+    paddingHorizontal: 15,
+  },
 });
 
 export default Dashboard;

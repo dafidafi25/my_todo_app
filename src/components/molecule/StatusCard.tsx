@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import colors from '@themes/Colors';
 import text from '@styles/text';
 import CircleStatus from '@assets/icons/CircleStatus';
+import card from '@styles/card';
 
 interface IStatusCardProps {
   title: string;
@@ -11,7 +12,7 @@ interface IStatusCardProps {
 
 const StatusCard: React.FC<IStatusCardProps> = ({ title, icon }) => {
   return (
-    <View style={styles.container}>
+    <View style={card.todoCard}>
       <View style={styles.icon}>{icon}</View>
 
       <View style={styles.text}>
@@ -28,17 +29,6 @@ const StatusCard: React.FC<IStatusCardProps> = ({ title, icon }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    paddingHorizontal: 5,
-    borderRadius: 15,
-    shadowOffset: { width: 1, height: 1 },
-    shadowColor: 'black',
-    shadowOpacity: 0.5,
-    elevation: 1,
-    backgroundColor: colors.white,
-    height: 65,
-  },
   icon: {
     width: '15%',
     alignItems: 'center',
