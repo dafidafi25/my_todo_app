@@ -18,14 +18,22 @@ import PlusCircle from '@assets/icons/PlusCircle';
 import Magnify from '@assets/icons/Magnify';
 import colors from '@themes/Colors';
 import SearchScreen from '@Screen/SearchScreen';
-
-export type RootStackParamList = {
-  Dashboard: undefined;
-  AddScreen: undefined;
-  SearchScreen: undefined;
-};
+import AddScreen from '@Screen/AddScreen';
+import RootStackParamList from '@routers/router';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
+
+const config = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 
 const App = () => {
   return (
@@ -51,13 +59,14 @@ const App = () => {
         />
         <Tab.Screen
           name="AddScreen"
-          component={Dashboard}
+          component={AddScreen}
           options={{
             tabBarIcon: () => (
               <View style={styles.addIcon}>
                 <PlusCircle color={colors.primary} width={80} />
               </View>
             ),
+            tabBarStyle: { display: 'none' },
           }}
         />
         <Tab.Screen

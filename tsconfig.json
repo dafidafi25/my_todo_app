@@ -13,7 +13,8 @@
       "@components/*" : ["components/*"],
       "@styles/*" : ["styles/*"],
       "@themes/*" : ["themes/*"],
-      "@Screen/*" : ["Screen/*"]
+      "@Screen/*" : ["Screen/*"],
+      "@routers/*" : ["routers/*"]
     }
   }
 }

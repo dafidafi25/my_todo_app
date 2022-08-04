@@ -12,7 +12,7 @@ interface ISearchScreenProps {}
 const SearchScreen: React.FC<ISearchScreenProps> = () => {
   return (
     <View style={styles.container}>
-      <NavigationHeader />
+      <NavigationHeader title="Task List" />
       <Spacer />
       <SearchBar />
       <Spacer />
