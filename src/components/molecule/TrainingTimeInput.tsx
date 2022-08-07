@@ -12,6 +12,7 @@ interface ITrainingTimeInputProps {
 const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
   const [date, setDate] = useState<Date>(new Date());
   const [open, setOpen] = useState(false);
+  const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
   let hours: number = date.getHours();
   let minutes: number | string = date.getMinutes();
@@ -31,9 +32,14 @@ const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
       <Text style={text.labelInputGray}>{label}</Text>
       <Pressable onPress={handleModal}>
         <Spacer spacing={10} />
-        <Text style={[text.timeInputPrimary, styles.text]}>
-          {hours}:{minutes} {timeStatus}
-        </Text>
+        {isEnabled && (
+          <Text style={[text.timeInputPrimary, styles.text]}>
+            {hours}:{minutes} {timeStatus}
+          </Text>
+        )}
+        {!isEnabled && (
+          <Text style={[text.timeInputPrimary, styles.text]}>--:--</Text>
+        )}
       </Pressable>
 
       <DatePicker
@@ -44,7 +50,7 @@ const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
         onConfirm={(data) => {
           setDate(data);
           setOpen(false);
-          console.log(data);
+          setIsEnabled(true);
         }}
         onCancel={() => {
           setOpen(false);

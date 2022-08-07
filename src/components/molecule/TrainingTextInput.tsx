@@ -13,16 +13,13 @@ const TrainingTextInput: React.FC<ITrainingTextInputProps> = ({ label }) => {
     <View style={styles.container}>
       <Text style={text.labelInputWhite}>{label}</Text>
       {Platform.OS === 'ios' && <Spacer spacing={10} />}
-      <TextInput style={[text.textInputWhite, styles.input]} textAlign="left" />
+      <TextInput style={[styles.input]} textAlign="left" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    borderBottomWidth: 1,
-    paddingBottom: 0,
-  },
+  container: {},
   input: {
     borderBottomWidth: 1,
     borderColor: colors.white,
