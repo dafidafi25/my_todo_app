@@ -54,27 +54,31 @@ const text = StyleSheet.create({
   },
   labelInputWhite: {
     fontFamily: family.poppinsRegular,
-    fontSize: 14,
+    fontSize: size.font16,
     color: colors.white,
+    lineHeight: 18,
   },
   labelInputGray: {
     fontFamily: family.poppinsRegular,
-    fontSize: 14,
+    fontSize: size.font18,
     color: colors.gray,
+    lineHeight: 22,
   },
   textInputWhite: {
     fontFamily: family.poppinsSemiBold,
-    fontSize: 18,
+    fontSize: size.font22,
     color: colors.white,
+    lineHeight: 22,
   },
   textInputPrimary: {
     fontFamily: family.poppinsSemiBold,
-    fontSize: 18,
+    fontSize: size.font22,
     color: colors.primary,
+    lineHeight: 22,
   },
   timeInputPrimary: {
     fontFamily: family.poppinsSemiBold,
-    fontSize: 25,
+    fontSize: size.font26,
     color: colors.primary,
   },
 });

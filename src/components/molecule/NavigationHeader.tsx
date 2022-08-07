@@ -1,6 +1,6 @@
 import ArrowLeft from '@assets/icons/ArrowLeft';
 import React from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Pressable, SafeAreaView } from 'react-native';
 
 import colors from '@themes/Colors';
 import text from '@styles/text';
@@ -19,9 +19,9 @@ const NavigationHeader: React.FC<INavigationHeaderProps> = ({
   color = colors.primary,
 }) => {
   const styles = StyleSheet.create({
-    container: {},
-    textContainer: { alignSelf: 'center' },
-    iconContainer: { position: 'absolute', top: 18, right: 0 },
+    container: { flexDirection: 'row' },
+    textContainer: { justifyContent: 'center' },
+    iconContainer: {},
     color: { color: color },
   });
 
@@ -33,8 +33,8 @@ const NavigationHeader: React.FC<INavigationHeaderProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Spacer />
+    <SafeAreaView style={styles.container}>
+      <Spacer spacing={2} />
       <View style={styles.textContainer}>
         <Text style={[text.sectionTitle, styles.color]}>{title}</Text>
       </View>
@@ -43,7 +43,7 @@ const NavigationHeader: React.FC<INavigationHeaderProps> = ({
           <ArrowLeft color={color} width={40} />
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
