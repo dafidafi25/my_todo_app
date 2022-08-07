@@ -19,9 +19,10 @@ const NavigationHeader: React.FC<INavigationHeaderProps> = ({
   color = colors.primary,
 }) => {
   const styles = StyleSheet.create({
-    container: { flexDirection: 'row' },
+    container: {},
     textContainer: { justifyContent: 'center' },
-    iconContainer: {},
+    iconContainer: { position: 'absolute', right: 0 },
+    header: { flexDirection: 'row', justifyContent: 'center' },
     color: { color: color },
   });
 
@@ -34,14 +35,17 @@ const NavigationHeader: React.FC<INavigationHeaderProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <Spacer spacing={2} />
-      <View style={styles.textContainer}>
-        <Text style={[text.sectionTitle, styles.color]}>{title}</Text>
-      </View>
-      <View style={styles.iconContainer}>
-        <Pressable onPress={handleNavigation}>
-          <ArrowLeft color={color} width={40} />
-        </Pressable>
+      <Spacer spacing={10} />
+
+      <View style={styles.header}>
+        <View style={styles.textContainer}>
+          <Text style={[text.sectionTitle, styles.color]}>{title}</Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <Pressable onPress={handleNavigation}>
+            <ArrowLeft color={color} width={40} />
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );

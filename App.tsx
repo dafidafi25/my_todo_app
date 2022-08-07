@@ -33,6 +33,7 @@ const App = () => {
           tabBarStyle: { backgroundColor: colors.primary, height: 72 },
           tabBarActiveTintColor: colors.white,
         }}
+        backBehavior="history"
       >
         <Tab.Screen
           name="Dashboard"
@@ -54,7 +55,11 @@ const App = () => {
                 <PlusCircle color={colors.primary} width={80} />
               </View>
             ),
-            tabBarStyle: { display: 'none' },
+            tabBarStyle: {
+              opacity: 0,
+              backgroundColor: 'rgba(52, 52, 52, 0)',
+              display: 'none',
+            },
           }}
         />
         <Tab.Screen

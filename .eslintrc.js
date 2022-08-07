@@ -15,6 +15,7 @@ module.exports = {
           {
             endOfLine: 'auto',
           },
+          { allowKeywords: false },
         ],
       },
     },
