@@ -51,7 +51,7 @@ const button = StyleSheet.create({
     height: 40,
   },
   inActive: {
-    backgroundColor: colors.gray,
+    backgroundColor: colors.backGround,
     height: 40,
   },
 });
