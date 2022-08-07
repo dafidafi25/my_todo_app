@@ -66,9 +66,7 @@ const text = StyleSheet.create({
   },
   textInputWhite: {
     fontFamily: family.poppinsSemiBold,
-    fontSize: size.font22,
     color: colors.white,
-    lineHeight: 22,
   },
   textInputPrimary: {
     fontFamily: family.poppinsSemiBold,

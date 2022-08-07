@@ -1,5 +1,6 @@
 import Spacer from '@components/atom/Spacer';
 import NavigationHeader from '@components/molecule/NavigationHeader';
+import TimeForm from '@components/molecule/TimeForm';
 import TrainingTextInput from '@components/molecule/TrainingTextInput';
 import TrainingTimeInput from '@components/molecule/TrainingTimeInput';
 import colors from '@themes/Colors';
@@ -21,7 +22,7 @@ const AddScreen: React.FC<IAddScreenProps> = () => {
       </View>
       <View style={styles.bottom}>
         <Spacer />
-        <TrainingTimeInput label="Mulai" />
+        <TimeForm />
       </View>
     </View>
   );
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
   },
-  screen: { flex: 1, paddingHorizontal: 25 },
+  screen: { flex: 1, paddingHorizontal: 36 },
   bottom: {
     flex: 2,
     backgroundColor: colors.white,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    paddingHorizontal: 25,
+    paddingHorizontal: 36,
   },
 });
 
