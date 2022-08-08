@@ -7,15 +7,20 @@ import DatePicker from 'react-native-date-picker';
 
 interface ITrainingDateInputProps {
   label: string;
+  onChangeDate?: (newDate: Date) => void;
+  value?: Date;
 }
 
-const TrainingDateInput: React.FC<ITrainingDateInputProps> = ({ label }) => {
-  const [date, setDate] = useState<Date>(new Date());
+const TrainingDateInput: React.FC<ITrainingDateInputProps> = ({
+  label,
+  onChangeDate,
+  value = new Date(),
+}) => {
   const [open, setOpen] = useState(false);
 
-  let day: string = date.getDate().toString();
-  let month: string = MONTH[date.getMonth()];
-  let year: string = date.getFullYear().toString();
+  let day: string = value.getDate().toString();
+  let month: string = MONTH[value.getMonth()];
+  let year: string = value.getFullYear().toString();
 
   day = day.length > 1 ? day : `0${day}`;
 
@@ -30,7 +35,6 @@ const TrainingDateInput: React.FC<ITrainingDateInputProps> = ({ label }) => {
       <Text style={text.labelInputWhite}>{label}</Text>
       <Pressable onPress={handleModal}>
         <Spacer spacing={10} />
-
         <Text style={[text.textInputWhite, styles.text]}>{formatDate}</Text>
       </Pressable>
 
@@ -38,9 +42,9 @@ const TrainingDateInput: React.FC<ITrainingDateInputProps> = ({ label }) => {
         modal
         mode="date"
         open={open}
-        date={date}
+        date={value}
         onConfirm={(data) => {
-          setDate(data);
+          onChangeDate && onChangeDate(data);
           setOpen(false);
         }}
         onCancel={() => {

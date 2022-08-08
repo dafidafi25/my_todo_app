@@ -7,9 +7,17 @@ import { View, StyleSheet, TextInput, Text, Platform } from 'react-native';
 
 interface ITextAreaInputProps {
   label: string;
+  onBlur?: () => void;
+  onChangeText?: (newText: string) => void;
+  value?: string;
 }
 
-const TextAreaInput: React.FC<ITextAreaInputProps> = ({ label }) => {
+const TextAreaInput: React.FC<ITextAreaInputProps> = ({
+  label,
+  onBlur,
+  onChangeText,
+  value,
+}) => {
   return (
     <View style={styles.container}>
       <Text style={text.labelInputGray}>{label}</Text>
@@ -19,6 +27,9 @@ const TextAreaInput: React.FC<ITextAreaInputProps> = ({ label }) => {
         textAlign="left"
         multiline
         textAlignVertical="bottom"
+        onBlur={onBlur}
+        onChangeText={onChangeText}
+        value={value}
       />
     </View>
   );

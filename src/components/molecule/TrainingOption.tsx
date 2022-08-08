@@ -1,7 +1,7 @@
 import Button from '@components/atom/Button';
 import Spacer from '@components/atom/Spacer';
 import text from '@styles/text';
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 export interface IOption {
@@ -12,17 +12,23 @@ export interface IOption {
 interface ITrainingOptionProps {
   label: string;
   options: IOption[];
+  selected?: string | number;
+  onChange?: (newValue: string | number) => void;
 }
 
-const TrainingOption: React.FC<ITrainingOptionProps> = ({ label, options }) => {
-  const [selectedOptions, setSelectedOptions] = useState<string | number>(
-    options[0].value,
-  );
+const TrainingOption: React.FC<ITrainingOptionProps> = ({
+  label,
+  options,
+  selected,
+  onChange,
+}) => {
+  const initialIndex = options.findIndex((item) => item.value === selected);
+  const selectedOptions = options[initialIndex >= 0 ? initialIndex : 0].value;
 
-  const handleOptionChange = (value?: number | string) => {
-    console.log(`Option Changed to ${value}`);
-    value && setSelectedOptions(value);
-  };
+  // const handleOptionChange = (value: string | number) => {
+  //   const optionIndex = options.findIndex((item) => item.value === value);
+  //   setSelectedOptions(optionIndex);
+  // };
 
   return (
     <View style={styles.container}>
@@ -34,8 +40,7 @@ const TrainingOption: React.FC<ITrainingOptionProps> = ({ label, options }) => {
             <Button
               key={item.value}
               variant={selectedOptions === item.value ? 'active' : 'inActive'}
-              handlePress={handleOptionChange}
-              id={item.value}
+              onPress={() => onChange && onChange(item.value)}
               text={item.text}
             />
           );

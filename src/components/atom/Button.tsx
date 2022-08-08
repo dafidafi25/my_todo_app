@@ -12,16 +12,14 @@ interface IButtonProps {
   variant?: btnVariant | optionVariant;
   text?: string;
   fullwidth?: boolean;
-  handlePress?: (id?: number | string) => void;
-  id?: number | string;
+  onPress?: () => void;
 }
 
 const Button: React.FC<IButtonProps> = ({
   variant = 'primary',
   text = 'button',
   fullwidth = false,
-  handlePress,
-  id,
+  onPress,
 }) => {
   let containerStyle = [
     container.rounded,
@@ -31,7 +29,7 @@ const Button: React.FC<IButtonProps> = ({
 
   return (
     <View>
-      <Pressable onPress={() => handlePress && handlePress(id)}>
+      <Pressable onPress={() => onPress && onPress()}>
         <View style={containerStyle}>
           <Text style={buttonText[variant]}>{text}</Text>
         </View>

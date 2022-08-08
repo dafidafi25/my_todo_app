@@ -7,9 +7,13 @@ import DatePicker from 'react-native-date-picker';
 
 interface ITrainingTimeInputProps {
   label: string;
+  onChangeTime?: (newDate: number) => void;
 }
 
-const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
+const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({
+  label,
+  onChangeTime,
+}) => {
   const [date, setDate] = useState<Date>(new Date());
   const [open, setOpen] = useState(false);
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
@@ -38,7 +42,7 @@ const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
           </Text>
         )}
         {!isEnabled && (
-          <Text style={[text.timeInputPrimary, styles.text]}>--:--</Text>
+          <Text style={[text.timeInputPrimary, styles.text]}>--:-- AM</Text>
         )}
       </Pressable>
 
@@ -48,6 +52,7 @@ const TrainingTimeInput: React.FC<ITrainingTimeInputProps> = ({ label }) => {
         open={open}
         date={date}
         onConfirm={(data) => {
+          onChangeTime && onChangeTime(data.getTime());
           setDate(data);
           setOpen(false);
           setIsEnabled(true);
