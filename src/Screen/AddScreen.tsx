@@ -8,11 +8,37 @@ import TextAreaInput from '@components/molecule/TrainingTextAreaInput';
 import TrainingTextInput from '@components/molecule/TrainingTextInput';
 import colors from '@themes/Colors';
 import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+
+interface TodoForm {
+  judul: string;
+  createdAt: Date;
+  timeStart?: number;
+  timeEnd?: number;
+  deskripsi?: string;
+  kategori: number | string;
+}
 
 interface IAddScreenProps {}
 
 const AddScreen: React.FC<IAddScreenProps> = () => {
+  const { control, handleSubmit, setValue } = useForm<TodoForm>({
+    defaultValues: {
+      judul: '',
+      createdAt: new Date(),
+      kategori: 1,
+    },
+  });
+  const onSubmit = handleSubmit((data: TodoForm) => console.log(data));
+
+  const handleStartTime = (newDate: number) => {
+    setValue('timeStart', newDate);
+  };
+  const handleEndTime = (newDate: number) => {
+    setValue('timeEnd', newDate);
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -23,20 +49,73 @@ const AddScreen: React.FC<IAddScreenProps> = () => {
           />
           <NavigationHeader color={colors.white} title={'Create a Task'} />
           <Spacer spacing={25} />
-          <TrainingTextInput label="Judul" />
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TrainingTextInput
+                label="Judul"
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+            name="judul"
+          />
+
           <Spacer spacing={40} />
-          <TrainingDateInput label="Tanggal" />
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TrainingDateInput
+                label="Tanggal"
+                onChangeDate={onChange}
+                value={value}
+              />
+            )}
+            name="createdAt"
+          />
         </View>
         <Spacer spacing={40} />
         <View style={styles.bottom}>
           <Spacer />
-          <TimeForm />
+          <TimeForm
+            onChangeStart={handleStartTime}
+            onChangeEnd={handleEndTime}
+          />
           <Spacer />
-          <TextAreaInput label="Deskripsi" />
+
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextAreaInput
+                label="Deskripsi"
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+            name="deskripsi"
+          />
+
           <Spacer spacing={20} />
-          <TrainingOption label="Kategori" options={options} />
+          <Controller
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TrainingOption
+                label="Kategori"
+                options={options}
+                onChange={onChange}
+                selected={value}
+              />
+            )}
+            name="kategori"
+          />
+
           <Spacer />
-          <Button variant="primary" fullwidth text="Create Task" />
+          <Button
+            variant="primary"
+            fullwidth
+            text="Create Task"
+            onPress={onSubmit}
+          />
         </View>
       </ScrollView>
     </View>
@@ -67,23 +146,23 @@ const options: IOption[] = [
     value: 1,
   },
   {
-    text: 'Design',
+    text: 'Kerja',
     value: 2,
   },
   {
-    text: 'Design',
+    text: 'Rapat',
     value: 3,
   },
   {
-    text: 'Design',
+    text: 'Bermain',
     value: 4,
   },
   {
-    text: 'Design',
+    text: 'Makan',
     value: 5,
   },
   {
-    text: 'Design',
+    text: 'Belajar',
     value: 6,
   },
 ];
