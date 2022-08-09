@@ -1,6 +1,7 @@
 import Spacer from '@components/atom/Spacer';
 import text from '@styles/text';
 import colors from '@themes/Colors';
+import { MONTH } from 'constant/date';
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import DatePicker from 'react-native-date-picker';
@@ -62,18 +63,3 @@ const styles = StyleSheet.create({
 });
 
 export default TrainingDateInput;
-
-const MONTH: string[] = [
-  'Januari',
-  'Februari',
-  'Maret',
-  'April',
-  'Mei',
-  'Juni',
-  'Juli',
-  'Agustus',
-  'September',
-  'Oktober',
-  'November',
-  'Desember',
-];

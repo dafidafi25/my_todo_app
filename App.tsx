@@ -20,10 +20,20 @@ import colors from '@themes/Colors';
 import SearchScreen from '@Screen/SearchScreen';
 import AddScreen from '@Screen/AddScreen';
 import RootStackParamList from '@routers/router';
+import { Provider } from 'react-redux';
+import { store } from '@stores/Store';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const App = () => {
+  return (
+    <Provider store={store}>
+      <TabNavigation />
+    </Provider>
+  );
+};
+
+const TabNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator

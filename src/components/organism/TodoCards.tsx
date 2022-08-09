@@ -1,6 +1,7 @@
 import Github from '@assets/icons/Github';
 import Spacer from '@components/atom/Spacer';
 import TodoCard from '@components/molecule/TodoCard';
+import { useAppSelector } from '@hooks/Redux';
 import { TODO_HEIGHT } from '@styles/card';
 import text from '@styles/text';
 import colors from '@themes/Colors';
@@ -10,7 +11,12 @@ import { View, StyleSheet, FlatList, Text } from 'react-native';
 interface ITodoCardsProps {}
 
 const TodoCards: React.FC<ITodoCardsProps> = () => {
-  const todos = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'];
+  const currentDate = new Date().toLocaleDateString();
+  const todos = useAppSelector((state) => state.TodoSlice);
+
+  const filteredTodos = todos.filter((item) => item.createdAt === currentDate);
+
+  console.log(filteredTodos);
 
   const getItemLayout = (data: any, index: number) => ({
     length: TODO_HEIGHT + 20,
@@ -22,10 +28,10 @@ const TodoCards: React.FC<ITodoCardsProps> = () => {
     <View style={styles.container}>
       <Text style={text.sectionTitle}>Tugas Hari Ini</Text>
       <FlatList
-        data={todos}
+        data={filteredTodos}
         showsVerticalScrollIndicator={false}
         getItemLayout={getItemLayout}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={RenderItem}
       />
     </View>

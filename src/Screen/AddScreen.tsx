@@ -6,6 +6,12 @@ import TrainingDateInput from '@components/molecule/TrainingDateInput';
 import TrainingOption, { IOption } from '@components/molecule/TrainingOption';
 import TextAreaInput from '@components/molecule/TrainingTextAreaInput';
 import TrainingTextInput from '@components/molecule/TrainingTextInput';
+import { useAppDispatch } from '@hooks/Redux';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { nanoid } from '@reduxjs/toolkit';
+import RootStackParamList from '@routers/router';
+import { addTodo } from '@stores/features/TodoSlice';
 import colors from '@themes/Colors';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -23,6 +29,9 @@ interface TodoForm {
 interface IAddScreenProps {}
 
 const AddScreen: React.FC<IAddScreenProps> = () => {
+  const dispatch = useAppDispatch();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { control, handleSubmit, setValue } = useForm<TodoForm>({
     defaultValues: {
       judul: '',
@@ -30,7 +39,16 @@ const AddScreen: React.FC<IAddScreenProps> = () => {
       kategori: 1,
     },
   });
-  const onSubmit = handleSubmit((data: TodoForm) => console.log(data));
+  const onSubmit = handleSubmit((data: TodoForm) => {
+    dispatch(
+      addTodo({
+        ...data,
+        createdAt: data.createdAt.toLocaleDateString('en-GB'),
+        id: nanoid(),
+      }),
+    );
+    navigation.goBack();
+  });
 
   const handleStartTime = (newDate: number) => {
     setValue('timeStart', newDate);

@@ -1,8 +1,11 @@
 import Github from '@assets/icons/Github';
 import Spacer from '@components/atom/Spacer';
 import StatusCard from '@components/molecule/StatusCard';
+import { useAppSelector } from '@hooks/Redux';
+import { ITodoState } from '@stores/features/TodoSlice';
 import text from '@styles/text';
 import colors from '@themes/Colors';
+import { MONTH } from 'constant/date';
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 
@@ -10,16 +13,23 @@ interface IStatusCardsProps {}
 
 const StatusCards: React.FC<IStatusCardsProps> = () => {
   let todosObject: string[] = [];
+  const todos = useAppSelector((state) => state.TodoSlice);
 
   const todoByCreated: ITodoList = todos.reduce((prev, todo) => {
     let temp: ITodoList = prev;
-    const key = todo.createdAt;
+    const key: string = todo.createdAt;
 
-    if (key in prev) {
-      temp[key].push(todo);
+    const date = key.split('/');
+
+    const generateObject: string = `${MONTH[parseInt(date[0], 10) - 1]} 20${
+      date[2]
+    }`;
+
+    if (generateObject in prev) {
+      temp[generateObject].push(todo);
     } else {
-      todosObject.push(key);
-      temp[key] = [todo];
+      todosObject.push(generateObject);
+      temp[generateObject] = [todo];
     }
     return prev;
   }, {});
@@ -39,7 +49,7 @@ const StatusCards: React.FC<IStatusCardsProps> = () => {
               return (
                 <View key={todo.id}>
                   <StatusCard
-                    title={todo.title}
+                    title={todo.judul}
                     icon={<Github color={colors.primary} width={40} />}
                   />
                   <Spacer spacing={10} />
@@ -62,51 +72,5 @@ const styles = StyleSheet.create({
 export default StatusCards;
 
 interface ITodoList {
-  [key: string]: ITodo[];
+  [key: string]: ITodoState[];
 }
-
-interface ITodo {
-  id: number;
-  title: string;
-  status: 'active' | 'miss' | 'done';
-  createdAt: string;
-}
-
-const todos: ITodo[] = [
-  {
-    id: 1,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Juli 2021',
-  },
-  {
-    id: 2,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Juli 2021',
-  },
-  {
-    id: 3,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Agustus 2021',
-  },
-  {
-    id: 4,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Agustus 2021',
-  },
-  {
-    id: 5,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Agustus 2021',
-  },
-  {
-    id: 6,
-    title: 'Belajar React Native',
-    status: 'active',
-    createdAt: 'Agustus 2021',
-  },
-];
