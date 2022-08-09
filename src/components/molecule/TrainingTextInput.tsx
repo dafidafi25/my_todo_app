@@ -9,6 +9,8 @@ interface ITrainingTextInputProps {
   onBlur?: () => void;
   onChangeText?: (newText: string) => void;
   value?: string;
+  fullwidth?: boolean;
+  type?: 'text' | 'password';
 }
 
 const TrainingTextInput: React.FC<ITrainingTextInputProps> = ({
@@ -16,9 +18,13 @@ const TrainingTextInput: React.FC<ITrainingTextInputProps> = ({
   onBlur,
   onChangeText,
   value,
+  fullwidth = false,
+  type = 'text',
 }) => {
+  const widthVariant = fullwidth ? styles.fullwidth : {};
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, widthVariant]}>
       <Text style={text.labelInputWhite}>{label}</Text>
       <Spacer spacing={5} />
       <TextInput
@@ -27,6 +33,7 @@ const TrainingTextInput: React.FC<ITrainingTextInputProps> = ({
         style={[styles.input, text.textInputWhite]}
         textAlign="left"
         value={value}
+        secureTextEntry={type === 'password'}
       />
     </View>
   );
@@ -39,6 +46,7 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     padding: 0,
   },
+  fullwidth: { width: '100%' },
 });
 
 export default TrainingTextInput;

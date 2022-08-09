@@ -4,7 +4,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import Spacer from './Spacer';
 
-type btnVariant = 'primary';
+type btnVariant = 'primary' | 'secondary';
 
 type optionVariant = 'active' | 'inActive';
 
@@ -13,6 +13,7 @@ interface IButtonProps {
   text?: string;
   fullwidth?: boolean;
   onPress?: () => void;
+  rounded?: boolean;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -20,15 +21,20 @@ const Button: React.FC<IButtonProps> = ({
   text = 'button',
   fullwidth = false,
   onPress,
+  rounded = true,
 }) => {
+  const borderRadius = rounded ? container.rounded : container.normal;
+
+  const width = fullwidth ? container.fullwidth : container.normal;
+
   let containerStyle = [
-    container.rounded,
     button[variant],
     fullwidth ? container.fullwidth : container.width,
+    borderRadius,
   ];
 
   return (
-    <View>
+    <View style={width}>
       <Pressable onPress={() => onPress && onPress()}>
         <View style={containerStyle}>
           <Text style={buttonText[variant]}>{text}</Text>
@@ -43,6 +49,12 @@ const button = StyleSheet.create({
   primary: {
     backgroundColor: colors.primary,
     height: 60,
+  },
+  secondary: {
+    backgroundColor: colors.primary,
+    height: 60,
+    borderWidth: 1,
+    borderColor: colors.white,
   },
   active: {
     backgroundColor: colors.primary,
@@ -60,12 +72,23 @@ const container = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  normal: {
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   fullwidth: { width: '100%' },
   width: { width: 90 },
 });
 
 const buttonText = StyleSheet.create({
   primary: {
+    color: colors.white,
+    fontFamily: family.poppinsSemiBold,
+    fontSize: size.font22,
+    lineHeight: 28,
+  },
+  secondary: {
     color: colors.white,
     fontFamily: family.poppinsSemiBold,
     fontSize: size.font22,

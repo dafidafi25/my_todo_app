@@ -22,69 +22,81 @@ import AddScreen from '@Screen/AddScreen';
 import RootStackParamList from '@routers/router';
 import { Provider } from 'react-redux';
 import { store } from '@stores/Store';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from '@Screen/Login';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <Provider store={store}>
-      <TabNavigation />
+      <ScreenNavigation />
     </Provider>
+  );
+};
+
+const ScreenNavigation = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={TabNavigation} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 const TabNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarStyle: { backgroundColor: colors.primary, height: 72 },
-          tabBarActiveTintColor: colors.white,
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: { backgroundColor: colors.primary, height: 72 },
+        tabBarActiveTintColor: colors.white,
+      }}
+      backBehavior="history"
+    >
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={styles.icon}>
+              <HomePlain color={color} width={41} />
+            </View>
+          ),
         }}
-        backBehavior="history"
-      >
-        <Tab.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <View style={styles.icon}>
-                <HomePlain color={color} width={41} />
-              </View>
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="AddScreen"
-          component={AddScreen}
-          options={{
-            tabBarIcon: () => (
-              <View style={styles.addIcon}>
-                <PlusCircle color={colors.primary} width={80} />
-              </View>
-            ),
-            tabBarStyle: {
-              opacity: 0,
-              backgroundColor: 'rgba(52, 52, 52, 0)',
-              display: 'none',
-            },
-          }}
-        />
-        <Tab.Screen
-          name="SearchScreen"
-          component={SearchScreen}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <View style={styles.icon}>
-                <Magnify color={color} width={43} />
-              </View>
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+      />
+      <Tab.Screen
+        name="AddScreen"
+        component={AddScreen}
+        options={{
+          tabBarIcon: () => (
+            <View style={styles.addIcon}>
+              <PlusCircle color={colors.primary} width={80} />
+            </View>
+          ),
+          tabBarStyle: {
+            opacity: 0,
+            backgroundColor: 'rgba(52, 52, 52, 0)',
+            display: 'none',
+          },
+        }}
+      />
+      <Tab.Screen
+        name="SearchScreen"
+        component={SearchScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={styles.icon}>
+              <Magnify color={color} width={43} />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
