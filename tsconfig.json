@@ -14,7 +14,10 @@
       "@styles/*" : ["styles/*"],
       "@themes/*" : ["themes/*"],
       "@Screen/*" : ["Screen/*"],
-      "@routers/*" : ["routers/*"]
+      "@routers/*" : ["routers/*"],
+      "@hooks/*" : ["hooks/*"],
+      "@interfaces/*" : ["interfaces/*"],
+      "@stores/*" : ["stores/*"],
     }
   }
 }
